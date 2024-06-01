@@ -46,7 +46,6 @@ problemLoop:
 		}()
 		select {
 		case <-timer.C:
-
 			break problemLoop
 		case answer := <-answerCh:
 			if answer == prob.ans {
