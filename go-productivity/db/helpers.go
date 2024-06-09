@@ -6,6 +6,7 @@ import (
 
 const TaskBucket = "to_do_tasks"
 const FinishedTaskBucket = "finished_tasks"
+const CacheBucket = "key_val_store"
 
 func itob(v uint64) []byte {
 	b := make([]byte, 8)

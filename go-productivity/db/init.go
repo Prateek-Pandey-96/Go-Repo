@@ -9,10 +9,11 @@ import (
 var DB *bolt.DB
 
 func Init(path string) error {
-	db, err := bolt.Open(path+"tasks_db", 0600, &bolt.Options{Timeout: 1 * time.Second})
+	db, err := bolt.Open(path+"/tasks_db", 0600, &bolt.Options{Timeout: 1 * time.Second})
 	if err != nil {
 		return err
 	}
+
 	DB = db
 
 	return db.Update(func(tx *bolt.Tx) error {
@@ -20,6 +21,9 @@ func Init(path string) error {
 			return err
 		}
 		if _, err := tx.CreateBucketIfNotExists([]byte(FinishedTaskBucket)); err != nil {
+			return err
+		}
+		if _, err := tx.CreateBucketIfNotExists([]byte(CacheBucket)); err != nil {
 			return err
 		}
 		return nil
