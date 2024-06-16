@@ -17,8 +17,7 @@ type Task struct {
 
 func Init(dbPath string) error {
 	var err error
-	db, err = bolt.Open(dbPath, 0600, &bolt.Options{Timeout: 1 * time.Second})
-	if err != nil {
+	if db, err = bolt.Open(dbPath, 0600, &bolt.Options{Timeout: 1 * time.Second}); err != nil {
 		return err
 	}
 	return db.Update(func(tx *bolt.Tx) error {
