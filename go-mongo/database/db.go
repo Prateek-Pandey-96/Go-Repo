@@ -13,8 +13,6 @@ import (
 var db *mongo.Client
 var mutex *sync.Mutex = &sync.Mutex{}
 
-var mongoUri string = config.AppConfig.ConnectionURI
-
 // Singelton
 func GetConnection() *mongo.Client {
 	if db == nil {
@@ -24,6 +22,8 @@ func GetConnection() *mongo.Client {
 		if db == nil {
 			ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 			defer cancel()
+
+			mongoUri := config.AppConfig.ConnectionURI
 
 			client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoUri))
 			if err != nil {

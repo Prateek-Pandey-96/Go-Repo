@@ -9,4 +9,5 @@ func UserRouter(r *gin.Engine) {
 	r.GET("/user/:id", controllers.GetUserById())
 	r.POST("/user", controllers.CreateUser())
 	r.DELETE("/user/:id", controllers.DeleteUserById())
+	r.PUT("/user/:id", controllers.UpdateUserById())
 }
