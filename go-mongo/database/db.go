@@ -2,10 +2,10 @@ package database
 
 import (
 	"context"
-	"os"
 	"sync"
 	"time"
 
+	"github.com/prateek69/go-mongo/config"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -13,7 +13,7 @@ import (
 var db *mongo.Client
 var mutex *sync.Mutex = &sync.Mutex{}
 
-var mongoUri string = os.Getenv("CONNECTION_URI")
+var mongoUri string = config.AppConfig.ConnectionURI
 
 // Singelton
 func GetConnection() *mongo.Client {
@@ -33,4 +33,8 @@ func GetConnection() *mongo.Client {
 		}
 	}
 	return db
+}
+
+func GetCollection() *mongo.Collection {
+	return GetConnection().Database(config.AppConfig.DatabaseName).Collection(config.AppConfig.CollectionName)
 }
