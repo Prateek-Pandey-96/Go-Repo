@@ -11,12 +11,14 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+var ErrorInvalidUUID = errors.New("invalid uuid")
+
 type LaptopServer struct {
 	Store LaptopStore
 	pb.UnimplementedLaptopServiceServer
 }
 
-func NewLaptopServer(store *InMemoryLaptopStore) *LaptopServer {
+func NewLaptopServer(store LaptopStore) *LaptopServer {
 	return &LaptopServer{
 		Store: store,
 	}
@@ -33,7 +35,7 @@ func (server *LaptopServer) CreateLaptop(
 	// Get id and generate if doesnt exist
 	if len(laptop.Id) > 0 {
 		if err := uuid.Validate(laptop.Id); err != nil {
-			return nil, status.Errorf(codes.InvalidArgument, "laptop id is not a valid uuid: %v", err)
+			return nil, ErrorInvalidUUID
 		}
 	} else {
 		id, err := uuid.NewRandom()

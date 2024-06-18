@@ -1,58 +1,58 @@
 {
-  "id": "0ff3fe92-4b78-4107-80ce-0ebeb036555d",
-  "brand": "Apple",
-  "name": "Mac Book",
-  "cpu": {
-    "brand": "Intel",
-    "name": "Intel_cpu",
-    "numberCores": 9,
-    "numberThreads": 13,
-    "minGhz": 3.799091860232406,
-    "maxGhz": 6.1032462215405445
+  "id":  "a72ab09f-1492-401e-a69d-dee3c6d0401f",
+  "brand":  "Apple",
+  "name":  "Mac Book",
+  "cpu":  {
+    "brand":  "Intel",
+    "name":  "intel-corei7",
+    "numberCores":  8,
+    "numberThreads":  11,
+    "minGhz":  4.849885117986293,
+    "maxGhz":  5.141766196704161
   },
-  "ram": {
-    "value": "10",
-    "unit": "GIGABYTE"
+  "ram":  {
+    "value":  "9",
+    "unit":  "GIGABYTE"
   },
-  "gpus": [
+  "gpus":  [
     {
-      "brand": "Amd",
-      "name": "Intel_cpu",
-      "minGhz": 3.680967038213794,
-      "maxGhz": 5.480300126050642,
-      "memory": {
-        "value": "8",
-        "unit": "GIGABYTE"
+      "brand":  "Intel",
+      "name":  "amd-r7",
+      "minGhz":  4.571281809720356,
+      "maxGhz":  5.773051267540429,
+      "memory":  {
+        "value":  "11",
+        "unit":  "GIGABYTE"
       }
     }
   ],
-  "storages": [
+  "storages":  [
     {
-      "driver": "HDD",
-      "memory": {
-        "value": "10",
-        "unit": "GIGABYTE"
+      "driver":  "HDD",
+      "memory":  {
+        "value":  "10",
+        "unit":  "GIGABYTE"
       }
     },
     {
-      "driver": "SSD",
-      "memory": {
-        "value": "14",
-        "unit": "GIGABYTE"
+      "driver":  "SSD",
+      "memory":  {
+        "value":  "13",
+        "unit":  "GIGABYTE"
       }
     }
   ],
-  "screen": {
-    "sizeInt": 19.833786,
-    "resolution": {
-      "width": 9445,
-      "height": 4695
+  "screen":  {
+    "sizeInt":  20.608667,
+    "resolution":  {
+      "width":  10149,
+      "height":  7228
     },
-    "panel": "IPS",
-    "multitouch": true
+    "panel":  "OLED",
+    "multitouch":  true
   },
-  "weightKg": 3.4756179223487025,
-  "priceUsd": 4214.914947357048,
-  "releaseYear": 2021,
-  "updatedAt": "2024-06-17T14:07:38.167095800Z"
+  "weightKg":  3.667823259795067,
+  "priceUsd":  3924.0898298783177,
+  "releaseYear":  2023,
+  "updatedAt":  "2024-06-18T13:44:03.371069500Z"
 }
