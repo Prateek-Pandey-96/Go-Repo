@@ -6,5 +6,11 @@ gen:
 clean:	
 	rm pb/proto/*.go
 
-run:
-	go run main.go
+server:
+	go run cmd/server/server.go --port 3001
+
+client:
+	go run cmd/client/client.go
+
+test:
+	go test -cover ./...

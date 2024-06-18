@@ -1,5 +1,4 @@
 syntax = "proto3";
-
 package pcbook;
 option go_package = "./pb";
 

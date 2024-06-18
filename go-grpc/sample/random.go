@@ -2,9 +2,14 @@ package sample
 
 import (
 	"math/rand"
+	"time"
 
 	pb "github.com/prateek69/go-grpc/pb/proto"
 )
+
+func init() {
+	rand.New(rand.NewSource(time.Now().UnixNano()))
+}
 
 func randomKeyboardLayout() pb.Keyboard_Layout {
 	switch rand.Intn(3) {
@@ -29,9 +34,9 @@ func randomCPUBrand() string {
 
 func randomCPUName() string {
 	if rand.Intn(2) == 1 {
-		return "Intel" + "_cpu"
+		return "intel-corei7"
 	}
-	return "Amd" + "_cpu"
+	return "amd-r7"
 }
 
 func randomInt(min int, max int) int {

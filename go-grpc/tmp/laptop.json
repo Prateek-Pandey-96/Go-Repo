@@ -1,0 +1,58 @@
+{
+  "id": "0ff3fe92-4b78-4107-80ce-0ebeb036555d",
+  "brand": "Apple",
+  "name": "Mac Book",
+  "cpu": {
+    "brand": "Intel",
+    "name": "Intel_cpu",
+    "numberCores": 9,
+    "numberThreads": 13,
+    "minGhz": 3.799091860232406,
+    "maxGhz": 6.1032462215405445
+  },
+  "ram": {
+    "value": "10",
+    "unit": "GIGABYTE"
+  },
+  "gpus": [
+    {
+      "brand": "Amd",
+      "name": "Intel_cpu",
+      "minGhz": 3.680967038213794,
+      "maxGhz": 5.480300126050642,
+      "memory": {
+        "value": "8",
+        "unit": "GIGABYTE"
+      }
+    }
+  ],
+  "storages": [
+    {
+      "driver": "HDD",
+      "memory": {
+        "value": "10",
+        "unit": "GIGABYTE"
+      }
+    },
+    {
+      "driver": "SSD",
+      "memory": {
+        "value": "14",
+        "unit": "GIGABYTE"
+      }
+    }
+  ],
+  "screen": {
+    "sizeInt": 19.833786,
+    "resolution": {
+      "width": 9445,
+      "height": 4695
+    },
+    "panel": "IPS",
+    "multitouch": true
+  },
+  "weightKg": 3.4756179223487025,
+  "priceUsd": 4214.914947357048,
+  "releaseYear": 2021,
+  "updatedAt": "2024-06-17T14:07:38.167095800Z"
+}
