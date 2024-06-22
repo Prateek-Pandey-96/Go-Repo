@@ -1,0 +1,58 @@
+{
+  "id":  "a72ab09f-1492-401e-a69d-dee3c6d0401f",
+  "brand":  "Apple",
+  "name":  "Mac Book",
+  "cpu":  {
+    "brand":  "Intel",
+    "name":  "intel-corei7",
+    "numberCores":  8,
+    "numberThreads":  11,
+    "minGhz":  4.849885117986293,
+    "maxGhz":  5.141766196704161
+  },
+  "ram":  {
+    "value":  "9",
+    "unit":  "GIGABYTE"
+  },
+  "gpus":  [
+    {
+      "brand":  "Intel",
+      "name":  "amd-r7",
+      "minGhz":  4.571281809720356,
+      "maxGhz":  5.773051267540429,
+      "memory":  {
+        "value":  "11",
+        "unit":  "GIGABYTE"
+      }
+    }
+  ],
+  "storages":  [
+    {
+      "driver":  "HDD",
+      "memory":  {
+        "value":  "10",
+        "unit":  "GIGABYTE"
+      }
+    },
+    {
+      "driver":  "SSD",
+      "memory":  {
+        "value":  "13",
+        "unit":  "GIGABYTE"
+      }
+    }
+  ],
+  "screen":  {
+    "sizeInt":  20.608667,
+    "resolution":  {
+      "width":  10149,
+      "height":  7228
+    },
+    "panel":  "OLED",
+    "multitouch":  true
+  },
+  "weightKg":  3.667823259795067,
+  "priceUsd":  3924.0898298783177,
+  "releaseYear":  2023,
+  "updatedAt":  "2024-06-18T13:44:03.371069500Z"
+}
