@@ -1,0 +1,11 @@
+syntax = "proto3";
+package employee;
+option go_package = './pb';
+import "proto/project.proto";
+
+message Employee{
+    string name = 1;
+    int32 age = 2;
+    string employee_id = 3;
+    repeated Project projects = 4;
+}

@@ -1,0 +1,8 @@
+syntax = "proto3";
+package employee;
+option go_package = './pb';
+
+message Project{
+    string project_id = 1;
+    string project_title = 2;
+}

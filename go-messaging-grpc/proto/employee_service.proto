@@ -1,0 +1,40 @@
+syntax = "proto3";
+package employee;
+option go_package = './pb';
+import "proto/employee.proto";
+import "proto/resume.proto";
+
+service EmployeeService{
+    rpc CreateEmployee(CreateEmployeeRequest) returns (EmployeeCreatedReponse) {};
+    rpc SearchEmployees(SearchEmployeesRequest) returns (stream SearchEmployeesReponse) {};
+    rpc CreateResume(stream CreateResumeRequest) returns (ResumeCreatedResponse){};
+}
+
+message CreateEmployeeRequest{
+    Employee employee = 1;
+}
+
+message EmployeeCreatedReponse{
+    string employee_id = 1;
+}
+
+message SearchEmployeesRequest{
+    Filter filter = 1;
+}
+
+message SearchEmployeesReponse{
+    Employee employee = 1;
+}
+
+message Filter{
+    int32 minProjects = 1;
+}
+
+message CreateResumeRequest{
+    Resume resume = 1;
+    bytes data = 2;
+}
+
+message ResumeCreatedResponse{
+    string resumeId = 1;
+}

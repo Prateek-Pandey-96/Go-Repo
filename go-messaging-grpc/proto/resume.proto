@@ -1,0 +1,8 @@
+syntax = "proto3";
+package employee;
+option go_package = './pb';
+
+message Resume{
+    string employeeId = 1;
+    bytes data = 2;
+}
