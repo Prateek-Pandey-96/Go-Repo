@@ -7,8 +7,9 @@ CREATE TABLE users (
 
 CREATE TABLE tasks (
     task_id SERIAL PRIMARY KEY,
+    user_id INT,
     name VARCHAR(100) NOT NULL,
     description TEXT,
-    user_id INT,
+    task_status BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

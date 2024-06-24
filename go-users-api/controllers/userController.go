@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -13,7 +14,7 @@ import (
 func GetUser(db *sql.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		id := c.Param("id")
-		user := &models.User{}
+		user := models.User{}
 
 		query := `SELECT * from users where id = $1;`
 		err := db.QueryRow(query, id).Scan(&user.Id, &user.Username, &user.Email, &user.Created_at)
@@ -21,6 +22,7 @@ func GetUser(db *sql.DB) gin.HandlerFunc {
 			if err == sql.ErrNoRows {
 				c.JSON(http.StatusNotFound, gin.H{"message": "User not found"})
 			} else {
+				fmt.Print(err)
 				c.JSON(http.StatusInternalServerError, gin.H{"message": "unable to get user!"})
 			}
 			return
@@ -59,7 +61,7 @@ func UpdateUser(db *sql.DB) gin.HandlerFunc {
 			return
 		}
 
-		query := `UPDATE users SET username = $1 where id = $2 RETURNING id, username;`
+		query := `UPDATE users SET username = $1 where id = $2 RETURNING id;`
 		var userId int
 		if err := db.QueryRow(query, req.Username, id).Scan(&userId); err != nil {
 			log.Printf("unable to update user in database %v", err)
