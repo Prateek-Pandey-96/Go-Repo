@@ -10,11 +10,13 @@ from cache.cache import getClient, set
 from response import Response
 from userReq import UserReq
 
-
 from database import user
-# necessary to create tables in db
+# necessary to create tables in db/ migration
 # from database.database import engine, Base
 # Base.metadata.create_all(engine)
+
+# for requirements.txt
+# pipreqs . --force
 
 app = FastAPI()
 

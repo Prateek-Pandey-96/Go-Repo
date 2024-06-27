@@ -2,7 +2,7 @@ syntax = "proto3";
 package auth;
 
 service AuthService {
-  rpc Verify(VerifyRequest) returns (VerifyResponse);
+  rpc VerifyToken(VerifyRequest) returns (VerifyResponse);
 }
 
 message VerifyRequest {
@@ -10,6 +10,7 @@ message VerifyRequest {
 }
 
 message VerifyResponse {
-  string username = 1;
-  string error = 2;
+  bool loggedIn = 1;
 }
+
+// python -m grpc_tools.protoc --proto_path=protos --python_out=./pb2 --grpc_python_out=./pb2 protos/auth.proto

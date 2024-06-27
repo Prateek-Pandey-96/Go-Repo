@@ -1,7 +1,8 @@
 import jwt, datetime
 from datetime import datetime, timedelta, timezone
-from fastapi import HTTPException, status
+from fastapi import HTTPException, status, Depends
 from config import get_settings 
+from cache.cache import getClient, get
 
 settings = get_settings()
 
@@ -16,17 +17,21 @@ def createToken(data: dict, expires_delta: int):
     )
     return encoded_jwt
 
-def verify_token(token: str):
+def verify_token(token: str) -> bool:
     try:
-        payload = jwt.decode(
-            token,
-            settings.SECRET_KEY,
-            algorithm=settings.ALGORITHM
-        )
-        return payload
-    except jwt.JWTError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+        # decoded_token = jwt.decode(
+        #     token,
+        #     settings.SECRET_KEY,
+        #     algorithms=[settings.ALGORITHM]
+        # )
+        # print(decoded_token)
+        generator = getClient()
+        print(get(next(generator), "kamlessh"))
+        # if (get(getClient(), "kamlesh")) is not None:
+        #     return True
+        # else:
+        #     return False
+        return True
+    except jwt.PyJWTError as e:
+        raise Exception(e)
+        return False
