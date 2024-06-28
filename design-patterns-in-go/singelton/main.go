@@ -28,6 +28,7 @@ func GetConfig() {
 }
 
 func main() {
+	fmt.Println("Let's learn singelton creational pattern!")
 	for i := 0; i < 100; i++ {
 		go GetConfig()
 	}

@@ -11,20 +11,20 @@ import (
 )
 
 func main() {
-	/*
-		Adding cache
-		Tasks unit tests
-		Changing schema for task status
-		Apply authentication
-		Automate cleaning finished tasks
-	*/
 	if err := godotenv.Load(".env"); err != nil {
 		log.Fatalf("Error loading .env file: %s", err)
 	}
+
+	// initialize connections to db and cache
 	database.ConnectDatabase()
 	db := database.GetNewDbConn()
+
+	database.ConnectCache()
+	client := database.GetNewCacheConn()
+
 	r := gin.Default()
 	routers.UserRouter(r, db)
-	routers.TaskRouter(r, db)
+	routers.TaskRouter(r, db, client)
+
 	r.Run(os.Getenv("APP_PORT"))
 }
