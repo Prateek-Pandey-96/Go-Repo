@@ -5,7 +5,7 @@ from redis import Redis
 import bcrypt
 
 from database.database import get_db
-from tokenHelper import createToken
+from tokenHelper import create_token
 from cache.cache import getClient, set
 from response import Response
 from userReq import UserReq
@@ -55,7 +55,7 @@ def login(userReq: UserReq, db:Session = Depends(get_db), cache:Redis = Depends(
             detail="Invalid password"
         )
     else:
-        token = createToken({"username": userReq.username}, expires_delta=15)
+        token = create_token({"username": userReq.username}, expires_delta=15)
         set(cache, f'{userReq.username}_token', token)
         return Response(status.HTTP_200_OK, token)
 

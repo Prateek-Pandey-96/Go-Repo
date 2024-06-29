@@ -1,11 +1,13 @@
-import jwt, datetime
+import jwt
+import datetime
 from datetime import datetime, timedelta, timezone
 from config import get_settings 
 from cache.cache import getClient, get
 
 settings = get_settings()
 
-def createToken(data: dict, expires_delta: int):
+
+def create_token(data: dict, expires_delta: int):
     to_encode = data.copy()
     expire = datetime.now(timezone.utc) + timedelta(minutes=expires_delta)
     to_encode.update({"exp": expire})
@@ -15,6 +17,7 @@ def createToken(data: dict, expires_delta: int):
         algorithm=settings.ALGORITHM
     )
     return encoded_jwt
+
 
 def verify_token(token: str) -> bool:
     try:
