@@ -10,8 +10,7 @@ import (
 func main() {
 	fmt.Println("Stock price notifier!")
 
-	stockSubject := &subject.StockSubject{}
-	stockSubject.Init()
+	stockSubject := subject.GetNewStockSubject()
 
 	emailSubscriber := &subscriber.EmailSubscriber{}
 	messageSubscriber := &subscriber.MessageSubscriber{}

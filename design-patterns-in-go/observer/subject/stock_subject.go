@@ -7,9 +7,11 @@ type StockSubject struct {
 	subscribers map[subscriber.ISubscriber]struct{}
 }
 
-func (ss *StockSubject) Init() {
-	ss.stockPrice = 0
-	ss.subscribers = make(map[subscriber.ISubscriber]struct{})
+func GetNewStockSubject() *StockSubject {
+	return &StockSubject{
+		stockPrice:  0,
+		subscribers: make(map[subscriber.ISubscriber]struct{}),
+	}
 }
 
 func (ss *StockSubject) ChangePrice(price int) {
