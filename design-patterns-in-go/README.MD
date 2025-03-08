@@ -13,3 +13,6 @@ Design Patterns Covered
 - Structural
     - Facade 
     - Adapter
+
+- Concurrency
+    - Worker Pool   Done

@@ -9,11 +9,12 @@ import (
 func main() {
 	fmt.Println("User builder!")
 
-	user1 := builder.GetNewDirector().GetUserWithNameAndCity("Prateek", "Jaipur")
+	director := builder.GetNewDirector()
+	user1 := director.GetUserWithNameAndCity("John", "NYU")
 	fmt.Printf("User name is: %s \n", user1.Name)
 	fmt.Printf("User city is: %s \n", user1.City)
 
-	user2 := builder.GetNewDirector().GetUserWithName("Prateek")
+	user2 := director.GetUserWithName("Sam")
 	fmt.Printf("User name is: %s \n", user2.Name)
 	fmt.Printf("User city is: %s \n", user2.City)
 }
