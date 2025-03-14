@@ -43,14 +43,9 @@ func transform3(nums <-chan int) <-chan int {
 
 func Pipelining(nums []int) {
 	fmt.Println("Pipelining")
-	done := make(chan bool)
-	go func() {
-		idx := 0
-		for num := range transform3(transform2(transform1(nums))) {
-			nums[idx] = num
-			idx += 1
-		}
-		done <- true
-	}()
-	<-done
+	idx := 0
+	for num := range transform3(transform2(transform1(nums))) {
+		nums[idx] = num
+		idx += 1
+	}
 }

@@ -16,3 +16,4 @@ Design Patterns Covered
 
 - Concurrency
     - Worker Pool   Done
+    - Pipeline Pattern  Done

@@ -38,11 +38,19 @@ func ExecuteConcurrently(workers int, N int) {
 
 	// send data
 	go func() {
+		defer close(workerPool.jobs)
 		for i := range N {
 			// fmt.Printf("Sending job %d \n", i)
 			workerPool.jobs <- i
 		}
-		close(workerPool.jobs)
+	}()
+
+	// output data
+	go func() {
+		defer close(workerPool.result)
+		for range workerPool.result {
+			// fmt.Printf("Consuming result for job %d \n", i)
+		}
 	}()
 
 	// process data
@@ -50,15 +58,6 @@ func ExecuteConcurrently(workers int, N int) {
 		workerPool.wg.Add(1)
 		go work(workerPool)
 	}
-
-	// output data
-	go func() {
-		for range workerPool.result {
-			// fmt.Printf("Consuming result for job %d \n", i)
-		}
-		close(workerPool.result)
-	}()
-
 	workerPool.wg.Wait()
 	end := time.Since(start)
 	fmt.Printf("Program took %d milliseconds \n", end.Milliseconds())
