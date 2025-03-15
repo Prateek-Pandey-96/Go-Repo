@@ -8,7 +8,7 @@ Design Patterns Covered
 - Behavioural
     - Observer  Done
     - Iterator
-    - Strategy
+    - Strategy  Done
 
 - Structural
     - Facade 
