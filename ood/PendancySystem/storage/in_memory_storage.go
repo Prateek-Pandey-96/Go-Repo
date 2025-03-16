@@ -1,34 +1,46 @@
 package storage
 
-import "github.com/prateek96/pendancySystem/entities"
+import (
+	"sync"
+
+	"github.com/prateek96/pendancySystem/entities"
+)
 
 type InMemoryStorage struct {
 	entities map[int][]string
+	mu       sync.Mutex
 }
 
 func GetInMemStorage() IStorage {
 	return &InMemoryStorage{
 		entities: make(map[int][]string),
+		mu:       sync.Mutex{},
 	}
 }
 
 func (ims *InMemoryStorage) Add(entity entities.Entity) error {
+	ims.mu.Lock()
 	ims.entities[entity.Id] = entity.Tags
+	defer ims.mu.Unlock()
 	return nil
 }
 
 func (ims *InMemoryStorage) Remove(id int) error {
+	ims.mu.Lock()
 	delete(ims.entities, id)
+	defer ims.mu.Unlock()
 	return nil
 }
 
 func (ims *InMemoryStorage) GetCount(tags []string) (int, error) {
+	ims.mu.Lock()
 	count := 0
 	for _, value := range ims.entities {
 		if satisfy(tags, value) {
 			count += 1
 		}
 	}
+	defer ims.mu.Unlock()
 	return count, nil
 }
 
