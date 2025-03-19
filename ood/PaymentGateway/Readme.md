@@ -1,71 +1,53 @@
-Payments is an integral component of any e-commerce or fintech.With the advent of digital india, we have seen different types of payments ecosystem rising up - Payments gateways, UPI, Rupay Network etc. These are easy to integrate and any org can get started with this in a matter of days.
+# Payment Gateway Implementation
 
-With the onset of different payment players, organizations integrate different payment gateways and shuffle between them to suit their use cases best.
+## Overview
+Payments is an integral component of any e-commerce or fintech. With the advent of digital India, we have seen different types of payment ecosystems emerging, including Payment Gateways, UPI, Rupay Network, etc. These solutions are easy to integrate, enabling organizations to start accepting payments in a matter of days.
 
-Based on use cases, customers can opt for payment via card / upi / net banking etc. Below is the general runbook for making a payment.
+Organizations often integrate multiple payment gateways and dynamically switch between them based on use cases. Customers can choose between different payment modes such as:
 
-- Select a pay mode
-- Enter details
-    - For netbanking - enter username and password
-    - For credit / debit card - enter card details ( number, expiry, cvv etc )
-    - UPI - enter vpa
+- **Net Banking** (Username & Password)
+- **Credit/Debit Card** (Card Number, CVV)
+- **UPI** (Upi Id)
 
-Implement a payments gateway which help facilitate a payment for its client, below points should be kept in mind while implementation
+## Real-World Example
+Flipkart has integrated multiple PGs such as Razorpay, Citrus, PaySafe, and CCAvenue. They use these PGs based on different transaction types. For instance:
+- Credit card transactions go to Razorpay.
+- Net banking transactions go to CCAvenue.
 
-**Real world example**
+Each PG integrates directly with multiple banks to facilitate transactions.
 
-Flipkart has integrated multiple PGs like Razorpay, Citrus, PaySafe, CCAvenue etc. They use these PGs based on different use cases. For example, divert all credit card transaction to RazorPay while Netbanking goes to CCAvenue.
+## Objective
+The goal is to build a **Payment Gateway (PG)** similar to Razorpay or CCAvenue that enables clients (e.g., Flipkart) to onboard and process transactions through different banks.
 
-These PGs internally have direct integration with different banks which facilitate the payments.
+### Features Required
+- Support multiple client onboarding.
+- Integrate multiple banks (HDFC, ICICI, SBI, etc.).
+- Support different payment methods (UPI, Credit/Debit Card, Net Banking, etc.).
+- Implement a **router** to direct transactions to specific banks based on:
+  - Payment method (e.g., all credit card transactions go to HDFC).
+  - Traffic distribution (e.g., 30% transactions go to Bank1, 70% to Bank2).
+- Allow clients to configure supported payment methods (e.g., only UPI, exclude Net Banking, etc.).
 
-Expectation from this code is to build PG like a Razorpay / CCAvenue which allows onboarding clients like Flipkart and process a transaction.
+## Assumptions
+- Banks can randomly return success/failure (mock this behavior).
+- Payments should be processed only if the correct parameters are provided.
+- Banks require OTP verification (for simplicity, transactions will go through without OTP).
 
-*Client* in this case is Flipkart ( PG can have more than one clients )*PG* is what candidate has to implementPG can have more than one *bank*, candidates are free to implement a mock or full fledged class
+## Code Expectations
+- **In-memory storage** for simplicity.
+- Use any programming language.
+- Basic function implementations without RESTful APIs.
+- **Focus on code quality**, OOP principles, and separation of concerns.
+- **Testability** should be considered.
+- Bonus points for **Test Cases**.
 
-**Feature Requirement:**
+## Required Functions
+- `addClient()` - Add a client to PG.
+- `removeClient()` - Remove a client from PG.
+- `hasClient()` - Check if a client exists in PG.
+- `listSupportedPaymodes()` - Show supported payment modes.
+- `addSupportForPaymode()` - Add payment mode support.
+- `removePaymode()` - Remove a payment mode.
+- `makePayment()` - Process a payment.
 
-- PG should support onboarding multiple clients.
-- PG should have multiple bank integrations ( like HDFC, ICICI, SBI etc )
-- PG should have facility to support different payment methods - UPI, Credit / Debit Card, Netbanking etc
-- PG should have facility to divert to specific bank based on certain criteria - a router basically - (for e.g. all credit card transaction goes to HDFC and netbanking is redirected to ICICI )
-- PG should have facility to allocate specific percentage between different banks - say bank1 takes 30% of total traffic while remaining 70% go to bank2
-- Clients should have an option to opt for specific payment methods. - only UPI, everything except netbanking etc
-
-**Assumptions:**
-
-- Banks can randomly return success / failure - candidates can create a random function to mock this behaviour.
-- Payments should be processed using an instrument only if specific parameter for that payment is passed - netbanking might need user id / password but credit card will only work with card details
-- Banks require OTP verification after instrument details are verified ( applicable for netbanking / card transaction ) for sake of simplicity, transactions will go through without OTP.
-
-**Code Expectation:**
-
-- Everything has to be in memory.
-- Candidate can opt for any language for implementation
-- Simple and basic function are expected as entry point - no marks for providing fancy restful API or framework implementation
-- Because this is a machine coding round, heavy focus would be given on code quality, candidate should not focus too much time on algo which compromises with implementation time
-
-**Requirements -** below are various functions that should be supported with necessary parameters passed
-
-- *addClient()* - add a client in PG
-- *removeClinet()* - remove client from PG
-- *hasClient()* - does a client exist in the PG?
-- *listSupportedPaymodes()* - show paymodes support by PG.
-- *addSupportForPaymode()* - add paymodes support in the PG.
-- *removePaymode()* - remove paymode ( both from PG or client basis parameter)
-- *showDistribution()* - show active distribution percentage of router
-- *makePayment( //necessary payment details )*
-
-**Evaluation criteria:**
-
-- Working code
-- Code readability
-- Implementation of OOPs / OOD principles with proper Separation of concerns
-- Testability - a TDD approach ( not to be mixed with test cases )
-- Language proficiency
-- Test Cases ( bonus points )
-
-**Extension problem:**
-
-- Can a router dynamically switch the traffic basis success percentage of Bank?
-- Can the router switch based on payment instruments as well instead of just Bank?
-- **[execution time limit] 3 seconds (java)**
+**Execution Time Limit:** 3 seconds (Java)
