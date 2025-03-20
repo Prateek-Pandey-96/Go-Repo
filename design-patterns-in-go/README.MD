@@ -7,12 +7,12 @@ Design Patterns Covered
 
 - Behavioural
     - Observer  Done
-    - Iterator
+    - State
     - Strategy  Done
 
 - Structural
-    - Facade 
-    - Adapter
+    - Facade    Done
+    - Adapter   Done
 
 - Concurrency
     - Worker Pool   Done
