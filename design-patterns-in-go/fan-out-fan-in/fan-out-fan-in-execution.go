@@ -23,7 +23,7 @@ func (wp *WorkerPool) init(concurrency int) {
 	wp.resultChan = make(chan Person)
 }
 
-func (wp *WorkerPool) mock1(personChan chan Person) chan Person {
+func (wp *WorkerPool) mock1(personChan <-chan Person) <-chan Person {
 	out := make(chan Person)
 	go func() {
 		defer close(out)
@@ -34,7 +34,7 @@ func (wp *WorkerPool) mock1(personChan chan Person) chan Person {
 	return out
 }
 
-func (wp *WorkerPool) mock2(personChan chan Person) chan Person {
+func (wp *WorkerPool) mock2(personChan <-chan Person) <-chan Person {
 	out := make(chan Person)
 	go func() {
 		defer close(out)
@@ -55,7 +55,7 @@ func (wp *WorkerPool) work() {
 	}
 }
 
-func readerFunction(r *csv.Reader) chan Person {
+func readerFunction(r *csv.Reader) <-chan Person {
 	out := make(chan Person)
 	go func() {
 		defer close(out)
