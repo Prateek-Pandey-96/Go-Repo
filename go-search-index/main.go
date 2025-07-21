@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/prateek69/searchIndex/models"
@@ -20,26 +21,38 @@ func main() {
 	end := time.Since(start)
 	fmt.Printf("took %d ms time to index 100mb of data\n", end.Milliseconds())
 	
-	start = time.Now()
 	query := []string{"word306", "word856", "word1", "word973"}
-	result_docs := index.Search(docs, query)
-	end = time.Since(start)
-	fmt.Printf("took %d us to search for the query in the index\n", end.Microseconds())
-	fmt.Println(result_docs)
+	
+	wg := &sync.WaitGroup{}
+	wg.Add(2)
 
-	start = time.Now()
-	temp := make([]models.Doc, 0)
-	for _, doc := range(docs){
-		count := 0
-		for _, q := range(query){
-			if strings.Contains(doc.Description, q){
-				count += 1
+	go func(){
+		defer wg.Done()
+		start = time.Now()
+		result_docs := index.Search(docs, query)
+		end = time.Since(start)
+		fmt.Printf("took %d us to search for the query in the index\n", end.Microseconds())
+		fmt.Println(result_docs)
+	}()
+	
+	go func(){
+		defer wg.Done()
+		start = time.Now()
+		temp := make([]models.Doc, 0)
+		for _, doc := range(docs){
+			count := 0
+			for _, q := range(query){
+				if strings.Contains(doc.Description, q){
+					count += 1
+				}
+			}
+			if count == len(query){
+				temp = append(temp, doc)
 			}
 		}
-		if count == len(query){
-			temp = append(temp, doc)
-		}
-	}
-	end = time.Since(start)
-	fmt.Printf("took %d us to search for the word using string.contains\n", end.Microseconds())
+		end = time.Since(start)
+		fmt.Printf("took %d us to search for the word using string.contains\n", end.Microseconds())
+	}()
+
+	wg.Wait()
 }
